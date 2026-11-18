@@ -7,7 +7,7 @@ const events = [
     date: "2026-11-20",
     time: "10:00 AM",
     venue: "University Auditorium",
-    image: "/images/tech.jpg",
+    image: "/images/tech.jfif",
     description: "An event bringing together students and technology enthusiasts to explore innovation and emerging technologies."
   },
   {
@@ -17,7 +17,7 @@ const events = [
     date: "2026-11-22",
     time: "3:00 PM",
     venue: "University Sports Ground",
-    image: "/images/football.jpg",
+    image: "/images/football.jfif",
     description: "A football competition featuring teams from different faculties."
   },
   {
@@ -27,7 +27,7 @@ const events = [
     date: "2026-11-25",
     time: "6:00 PM",
     venue: "University Chapel",
-    image: "/images/worship.jpg",
+    image: "/images/worship.avif",
     description: "An evening of worship, prayer and spiritual fellowship."
   },
   {
@@ -37,7 +37,7 @@ const events = [
     date: "2026-11-28",
     time: "5:00 PM",
     venue: "Student Centre",
-    image: "/images/party.jpg",
+    image: "/images/party.jfif",
     description: "A social gathering to welcome new students and encourage interaction."
   },
   {
@@ -47,18 +47,18 @@ const events = [
     date: "2026-12-02",
     time: "11:00 AM",
     venue: "Computer Laboratory",
-    image: "/images/workshop.jpg",
+    image: "/images/web-development.jfif",
     description: "A practical workshop introducing students to modern web development."
   },
   {
     id: 6,
-    title: "Interdepartmental Basketball",
+    title: "Interdepartmental Table-Tennis",
     category: "Sports",
     date: "2026-12-05",
     time: "2:00 PM",
-    venue: "University Basketball Court",
-    image: "/images/basketball.jpg",
-    description: "An exciting basketball competition between university departments."
+    venue: "University Tennis Court",
+    image: "/images/tennis-table.jfif",
+    description: "An exciting table-tennis competition between university departments."
   },
   {
     id: 7,
@@ -67,7 +67,7 @@ const events = [
     date: "2026-12-08",
     time: "7:00 AM",
     venue: "University Chapel",
-    image: "/images/prayer.jpg",
+    image: "/images/prayer.jfif",
     description: "A student gathering for prayer, reflection and fellowship."
   },
   {
@@ -77,7 +77,7 @@ const events = [
     date: "2026-12-12",
     time: "12:00 PM",
     venue: "University Main Field",
-    image: "/images/cultural.jpg",
+    image: "/images/cultural.jfif",
     description: "A celebration of culture, fashion, music, food and student creativity."
   }
 ];
