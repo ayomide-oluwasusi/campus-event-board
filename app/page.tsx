@@ -13,12 +13,12 @@ export default function Home() {
   const [currentBanner, setCurrentBanner] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentBanner((previous) => (previous + 1) % banners.length);
-    }, 5000);
+  const timer = window.setTimeout(() => {
+    setCurrentBanner((current) => (current + 1) % banners.length);
+  }, 5000);
 
-    return () => clearInterval(interval);
-  }, []);
+  return () => window.clearTimeout(timer);
+}, [currentBanner]);
 
   return (
     <main className="min-h-screen bg-gray-50 p-6">
@@ -66,11 +66,11 @@ export default function Home() {
       {/* Event Cards */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {events.map((event) => (
-          <div
-            key={event.id}
-            className="rounded-xl bg-white p-5 shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg"
-          >
-            <img
+          <a
+          key={event.id}
+          href={`/events/${event.id}`}
+          className="block rounded-xl bg-white p-5 shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+>            <img
               src={event.image}
               alt={event.title}
               className="mb-4 h-48 w-full rounded-lg object-cover"
@@ -99,7 +99,7 @@ export default function Home() {
             </div>
 
             <p className="mt-3 text-gray-900 italic"> {event.description}</p>
-          </div>
+          </a>
         ))}
       </div>
     </main>
