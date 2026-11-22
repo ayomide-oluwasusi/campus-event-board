@@ -12,10 +12,18 @@ const banners = [
 export default function Home() {
   const [currentBanner, setCurrentBanner] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All");
-    const filteredEvents =
-    selectedCategory === "All"
-      ? events
-      : events.filter((event) => event.category === selectedCategory);
+  const [searchTerm, setSearchTerm] = useState("");
+    const filteredEvents = events.filter((event) => {
+  const matchesCategory =
+    selectedCategory === "All" ||
+    event.category === selectedCategory;
+
+  const matchesSearch = event.title
+    .toLowerCase()
+    .includes(searchTerm.toLowerCase());
+
+  return matchesCategory && matchesSearch;
+});
 
   useEffect(() => {
   const timer = window.setTimeout(() => {
@@ -67,6 +75,20 @@ export default function Home() {
       <h2 className="mb-6 text-xl font-semibold text-gray-700">
         Upcoming Events
       </h2>
+      {/* Search Bar */}
+<div className="relative mb-6 sm:max-w-md">
+  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+    🔍
+  </span>
+
+  <input
+    type="text"
+    placeholder="Search for an event..."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+    className="w-full rounded-xl border border-gray-300 bg-white py-3 pl-11 pr-5 text-gray-800 outline-none focus:border-green-500"
+  />
+</div>
       {/* Category Filter */}
 <div className="mb-6 flex flex-wrap gap-3">
   {["All", "Tech", "Sports", "Faith", "Social"].map((category) => (
