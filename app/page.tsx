@@ -11,6 +11,11 @@ const banners = [
 
 export default function Home() {
   const [currentBanner, setCurrentBanner] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+    const filteredEvents =
+    selectedCategory === "All"
+      ? events
+      : events.filter((event) => event.category === selectedCategory);
 
   useEffect(() => {
   const timer = window.setTimeout(() => {
@@ -62,10 +67,31 @@ export default function Home() {
       <h2 className="mb-6 text-xl font-semibold text-gray-700">
         Upcoming Events
       </h2>
+      {/* Category Filter */}
+<div className="mb-6 flex flex-wrap gap-3">
+  {["All", "Tech", "Sports", "Faith", "Social"].map((category) => (
+    <button
+      key={category}
+      onClick={() => setSelectedCategory(category)}
+      className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
+        selectedCategory === category
+          ? "bg-green-600 text-white"
+          : "bg-white text-gray-700 shadow hover:bg-green-100"
+      }`}
+    >
+      {category}
+    </button>
+  ))}
+</div>
 
       {/* Event Cards */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {events.map((event) => (
+        {filteredEvents.length === 0 && 
+  <p className="col-span-full py-10 text-center text-gray-500">
+    No events found in this category.
+  </p>
+}
+        {filteredEvents.map((event) => (
           <a
           key={event.id}
           href={`/events/${event.id}`}
