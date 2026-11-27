@@ -24,7 +24,9 @@ export default function Home() {
 
   return matchesCategory && matchesSearch;
 });
-
+const sortedEvents = [...filteredEvents].sort(
+  (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+);
   useEffect(() => {
   const timer = window.setTimeout(() => {
     setCurrentBanner((current) => (current + 1) % banners.length);
@@ -113,7 +115,7 @@ export default function Home() {
     No events found in this category.
   </p>
 }
-        {filteredEvents.map((event) => (
+        {sortedEvents.map((event) => (
           <a
           key={event.id}
           href={`/events/${event.id}`}
