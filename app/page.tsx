@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import events from "../data/data";
+import { useSavedEvents } from "./context/SavedEventsContext";
 
 const banners = [
   "/images/banner-1.jpg",
@@ -10,6 +11,7 @@ const banners = [
 ];
 
 export default function Home() {
+  const { savedEvents, toggleSaveEvent } = useSavedEvents();
   const [currentBanner, setCurrentBanner] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
@@ -116,11 +118,11 @@ const sortedEvents = [...filteredEvents].sort(
   </p>
 }
         {sortedEvents.map((event) => (
-          <a
+          <div
           key={event.id}
-          href={`/events/${event.id}`}
-          className="block rounded-xl bg-white p-5 shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg"
->            <img
+          className="rounded-xl bg-white p-5 shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+          >
+            <img
               src={event.image}
               alt={event.title}
               className="mb-4 h-48 w-full rounded-lg object-cover"
@@ -149,7 +151,21 @@ const sortedEvents = [...filteredEvents].sort(
             </div>
 
             <p className="mt-3 text-gray-900 italic"> {event.description}</p>
-          </a>
+            <div className="mt-5 flex items-center justify-between gap-3">
+              <a
+              href={`/events/${event.id}`}
+              className="rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700"
+              >
+                View Details
+                </a>
+                <button
+                onClick={() => toggleSaveEvent(event.id)}
+                className="rounded-lg border border-green-600 px-4 py-2 text-sm font-semibold text-green-700 hover:bg-green-50"
+                >
+                  {savedEvents.includes(event.id) ? "Saved ✓" : "Save Event"}
+                  </button>
+                  </div>
+          </div>
         ))}
       </div>
     </main>
